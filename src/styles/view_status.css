@@ -1,0 +1,263 @@
+.view-status {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: black;
+}
+
+/* LAYOUT */
+.view-status {
+  display: flex;
+  min-height: 100vh;
+  color: white;
+}
+
+/* SIDEBAR (reuse style kamu) */
+.view-status .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #222;
+  overflow: hidden; /* 🔥 penting */
+}
+
+.view-status .sidebar-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-status .top-section {
+  position: sticky;
+  top: 0;
+  height: 60px;
+  z-index: 1000;
+  background: grey;
+}
+
+.view-status .header {
+  height: 60px; /* samakan tinggi */
+  display: flex;
+  align-items: center;
+  border-bottom: none;
+  background: gray;
+}
+
+.view-status .logo {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border-bottom: none;
+}
+
+.view-status .menu {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: yellow;
+}
+
+.view-status .menu-group {
+  padding-top: 43px;
+}
+
+.view-status .menu.active {
+  background: linear-gradient(to right, blue, purple);
+}
+
+.view-status .user-wrapper {
+  padding: 15px;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: auto;
+}
+
+/* USER */
+.view-status .user-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background: black;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  border: 1px solid #666;
+  overflow: visible;
+}
+
+.view-status .user-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.view-status .avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: -10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+  font-size: 20px;
+  color: yellow;
+}
+
+/* text */
+.view-status .user-info .name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ddd;
+}
+
+.view-status .user-info .email {
+  font-size: 15px;
+  margin-top: 5px;
+  color: yellow;
+}
+
+/* arrow kanan */
+.view-status .user-arrow {
+  font-size: 28px;
+  color: yellow;
+  margin-right: -10px;
+}
+
+.view-status .user-box:hover {
+  background: #555;
+  cursor: pointer;
+}
+
+/* CONTENT */
+.view-status .content {
+  flex: 1;
+  padding: 30px;
+  padding-top: 20px;
+  transition: padding-left 0.2s ease;
+  margin-bottom: 30px;
+}
+
+.view-status h1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.view-status h2 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+/* TABLE */
+.view-status .status-table {
+  border: 2px solid yellow;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.view-status .status-table .table-header,
+.view-status .status-table .table-row {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  align-items: center;
+  padding: 10px 20px;
+  column-gap: 20px; /* 🔥 ini penting */
+}
+
+.view-status .status-table .table-header div,
+.view-status .status-table .table-row div {
+  display: block;
+}
+
+.view-status .status-table .table-header {
+  background: #0000aa;
+  color: yellow;
+  font-style: italic;
+  padding: 12px;
+  border-bottom: 2px solid yellow;
+}
+
+.view-status .status-table .table-header div {
+  white-space: nowrap;
+}
+
+.view-status .status-table .table-row {
+  background: linear-gradient(180deg, blue, #0000cc);
+  padding: 12px;
+  align-items: center;
+}
+
+.view-status .status-table .table-row:not(:last-child) {
+  border-bottom: 1px solid yellow;
+}
+
+/* STATUS */
+.view-status .status {
+  font-weight: bold;
+}
+
+.view-status .status.pending {
+  color: yellow;
+}
+
+.view-status .status.approved {
+  color: lime;
+}
+
+.view-status .status.rejected {
+  color: red;
+}
+
+/* BUTTON */
+.view-status .download-btn {
+  background: yellow;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.view-status .download-btn:hover {
+  opacity: 0.8;
+}
+
+.view-status .waiting-text {
+  color: #ffd700;
+  font-style: italic;
+}
+
+/* DIVIDER */
+.view-status .divider {
+  border: none;
+  border-top: 2px solid yellowgreen; /* warna garis */
+  height: 1px;
+  background: linear-gradient(to right, transparent, #666, transparent);
+  margin: 15px 0 25px;
+}
+
+/* RESIZER */
+.view-status .resizer {
+  width: 5px;
+  cursor: col-resize;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+.view-status .resizer:hover {
+  background: rgba(255,255,255,0.2);
+}

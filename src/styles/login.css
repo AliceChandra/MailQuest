@@ -1,0 +1,152 @@
+.login .body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: black;
+}
+
+.login .outer-layer {
+  background: black;
+  min-height: 100vh;
+  padding: 50px 50px;
+}
+
+.login .login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #555555;
+  padding: 50px 0;
+}
+
+.login .login-card {
+  background: black;
+  padding: 40px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 15px;
+  height: 100%;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0,0,0,0.7);
+
+  margin-top: 40px; /* ⬅️ dorong dikit dari atas */
+  margin-bottom: 40px; /* ⬅️ dorong dikit dari bawah */
+}
+
+.login .logo-box {
+  background: yellow;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.login .title {
+  color: white;
+  margin: 10px 0 5px;
+}
+
+.login .subtitle {
+  color: gray;
+  margin-bottom: 20px;
+}
+
+/* INPUT GROUP */
+.login .input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.login .input-group input {
+  height: 45px;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #888;
+  background: #222;
+  color: white;
+  box-sizing: border-box;
+}
+
+/* EYE ICON */
+.login .eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 30px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 2;
+}
+
+/* REMEMBER ME */
+.login .remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: gray;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+/* BUTTON */
+.login .login-btn {
+  height: 45px;
+  width: 100%;
+  padding: 10px;
+  background: yellow;
+  border: none;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login .login-btn:hover {
+  opacity: 0.8;
+}
+
+/* REGISTER LINK */
+.login .register-text {
+  color: gray;
+  margin-top: 15px;
+}
+
+.login .register-text span {
+  color: yellow;
+  cursor: pointer;
+}
+
+.login .register-text span:hover {
+  text-decoration: underline;
+}
+
+/* VALIDATION ERROR */
+.login .error-input {
+  border: 2px solid red !important;
+  color: red !important;
+}
+
+.login .error-message {
+  color: red;
+  font-size: 15px;
+  margin-top: 2px;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.login .login-error {
+  color: red;
+  background-color: #F8CECC;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: left;
+  font-weight: bold;
+}

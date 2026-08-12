@@ -1,0 +1,338 @@
+.create-letter {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: black;
+}
+
+/* LAYOUT */
+.create-letter {
+  display: flex;
+  min-height: 100vh;
+  color: white;
+}
+
+/* SIDEBAR (reuse style kamu) */
+.create-letter .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #222;
+  overflow: hidden; /* 🔥 penting */
+}
+
+.create-letter .sidebar-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-letter .top-section {
+  position: sticky;
+  top: 0;
+  height: 60px;
+  z-index: 1000;
+  background: grey;
+}
+
+.create-letter .header {
+  height: 60px; /* samakan tinggi */
+  display: flex;
+  align-items: center;
+  border-bottom: none;
+  background: gray;
+}
+
+.create-letter .logo {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border-bottom: none;
+}
+
+.create-letter .menu {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: yellow;
+}
+
+.create-letter .menu-group {
+  padding-top: 43px;
+}
+
+.create-letter .menu.active {
+  background: linear-gradient(to right, blue, purple);
+}
+
+.create-letter .user-wrapper {
+  padding: 15px;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: auto;
+}
+
+/* USER */
+.create-letter .user-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background: black;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  border: 1px solid #666;
+  overflow: visible;
+}
+
+.create-letter .user-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.create-letter .avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: -10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+  font-size: 20px;
+  color: yellow;
+}
+
+/* text */
+.create-letter .user-info .name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ddd;
+}
+
+.create-letter .user-info .email {
+  font-size: 15px;
+  margin-top: 5px;
+  color: yellow;
+}
+
+/* arrow kanan */
+.create-letter .user-arrow {
+  font-size: 28px;
+  color: yellow;
+  margin-right: -10px;
+}
+
+.create-letter .user-box:hover {
+  background: #555;
+  cursor: pointer;
+}
+
+/* CONTENT */
+.create-letter .content {
+  flex: 1;
+  padding: 30px;
+  padding-top: 20px;
+  transition: padding-left 0.2s ease;
+  margin-bottom: 30px;
+}
+
+/* TABLE */
+.create-letter .student-table {
+  border: 2px solid yellow;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.create-letter .student-table .table-header,
+.create-letter .student-table .table-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 150px 200px 200px;
+  padding: 10px;
+}
+
+.create-letter .student-table .table-header {
+  color: yellow;
+  background: #0000aa;
+  font-style: italic;
+  border-bottom: 2px solid yellow;
+}
+
+.create-letter .student-table .table-row {
+  color: yellow;
+  background: linear-gradient(180deg, blue, #0000cc);
+  border-bottom: 1px solid yellow;
+}
+
+.create-letter .student-table .table-row:last-child {
+  border-bottom: none;
+}
+
+/* FORM */
+.create-letter .form-group {
+  margin-bottom: 15px;
+}
+
+.create-letter .form-group label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-style: italic;
+  color: yellow;
+}
+
+/* INFO TEXT */
+.create-letter .info-row {
+  display: grid;
+  grid-template-columns: 250px 20px 1fr;
+  margin-bottom: 10px;
+  color: yellow;
+  font-family: 'Courier New', monospace;
+}
+
+.create-letter h2 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+/* FORM STYLE FIX (BIAR SAMA FIGMA) */
+.create-letter .form-group input,
+.create-letter .form-group select {
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid yellow;
+  background-color: #222;
+  color: white;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.create-letter .form-group input {
+  margin: 0;
+}
+
+/* ICON */
+.create-letter input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.create-letter .date-wrapper {
+  position: relative;
+}
+
+.create-letter .date-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 15px;
+  top: 0;
+  bottom: -50px;
+  margin: auto 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: url(
+    "data:image/svg+xml;utf8, <svg fill='yellow' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm12 6H5v12h14V8z'/></svg>"
+  ) no-repeat center;
+  background-size: contain;
+  pointer-events: none;
+}
+
+/* SELECT ARROW */
+.create-letter .form-group select {
+  padding-right: 40px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  appearance: none;
+  background: #222 url("data:image/svg+xml;utf8,<svg fill='yellow' height='40' viewBox='0 0 24 24' width='40' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 10px center;
+}
+
+/* BUTTON */
+.create-letter .btn-group {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.create-letter .primary-btn {
+  background: blue;
+  font-size: 20px;
+  color: yellow;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
+.create-letter .primary-btn:hover {
+  opacity: 0.8;
+}
+
+.create-letter .primary-btn:disabled {
+  background: #444444;
+  color: #999999;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.create-letter .primary-btn:disabled:hover {
+  opacity: 0.6;
+}
+
+/* DIVIDER */
+.create-letter .divider {
+  border: none;
+  border-top: 2px solid yellowgreen;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #666, transparent);
+  margin: 15px 0 25px;
+}
+
+/* RESIZER */
+.create-letter .resizer {
+  width: 5px;
+  cursor: col-resize;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+.create-letter .resizer:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* VALIDATION ERROR */
+.letter-request .error-input {
+  border: 2px solid red !important;
+  color: red !important;
+}
+
+.letter-request .error-message {
+  color: red;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 0;
+}

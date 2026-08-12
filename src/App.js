@@ -1,24 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Register from './pages/register';
+import Login from './pages/login';
+
+import LetterRequest from './pages/letter_request';
+import ViewStatus from './pages/view_status';
+
+import Dashboard from './pages/dashboard';
+import CreateLetter from './pages/create_letter';
+import ManageHead from './pages/manage_head';
+import ManageTemplate from './pages/manage_template';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/letter-request" element={<LetterRequest />} />
+        <Route path="/view-status" element={<ViewStatus />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/create-letter" element={<CreateLetter />} />
+        <Route path="/manage-head" element={<ManageHead />} />
+        <Route path="/manage-template" element={<ManageTemplate />} />
+
+      </Routes>
+    </Router>
   );
 }
 

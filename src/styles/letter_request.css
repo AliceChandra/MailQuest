@@ -1,0 +1,592 @@
+.letter-request {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: black;
+}
+
+/* LAYOUT */
+.letter-request {
+  display: flex;
+  min-height: 100vh;
+  color: white;
+}
+
+/* SIDEBAR */
+.letter-request .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #222222;
+  overflow: hidden; /* 🔥 penting */
+}
+
+.letter-request .sidebar-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.letter-request .top-section {
+  position: sticky;
+  top: 0;
+  height: 60px;
+  z-index: 1000;
+  background: grey;
+}
+
+.letter-request .header {
+  height: 60px; /* samakan tinggi */
+  display: flex;
+  align-items: center;
+  border-bottom: none;
+  background: gray;
+}
+
+.letter-request .logo {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border-bottom: none;
+}
+
+.letter-request .menu {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: yellow;
+}
+
+.letter-request .menu-group {
+  padding-top: 43px;
+}
+
+.letter-request .menu.active {
+  background: linear-gradient(to right, blue, purple);
+}
+
+.letter-request .user-wrapper {
+  padding: 15px;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: auto;
+}
+
+/* USER */
+.letter-request .user-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background: black;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  border: 1px solid #666;
+  overflow: visible;
+}
+
+.letter-request .user-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.letter-request .avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: yellow;
+}
+
+/* text */
+.letter-request .user-info .name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ddd;
+}
+
+.letter-request .user-info .email {
+  font-size: 15px;
+  margin-top: 5px;
+  color: yellow;
+}
+
+/* arrow kanan */
+.letter-request .user-arrow {
+  font-size: 28px;
+  color: yellow;
+  margin-right: -10px;
+}
+
+.letter-request .user-box:hover {
+  background: #555;
+  cursor: pointer;
+}
+
+/* CONTENT */
+.letter-request .content {
+  flex: 1;
+  padding: 30px;
+  padding-top: 20px;
+  transition: padding-left 0.2s ease;
+  margin-bottom: 30px;
+}
+
+.letter-request h1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.letter-request h2 {
+  margin-top: 50px;
+  margin-bottom: 15px;
+  font-size: 30px;
+}
+
+.letter-request .student-title {
+  margin: 30px 0 15px;
+  font-size: 30px;
+}
+
+/* CARD */
+.letter-request .card label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+  color: #ddd;
+}
+
+.letter-request .card {
+  background: linear-gradient(180deg, #1a2cff, #0000aa);
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+.letter-request .form-group {
+  margin-bottom: 18px;
+}
+
+.letter-request .form-group label {
+  display: block;
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 6px;
+  color: yellow;
+}
+
+.letter-request .form-group input {
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+
+  border-radius: 8px;
+  border: 2px solid yellow;
+
+  background: #222;
+  color: white;
+
+  box-sizing: border-box;
+
+  font-size: 16px;
+}
+
+.letter-request .form-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  padding-right: 40px; /* ini biar ga nempel */
+
+  border-radius: 8px;
+  border: 2px solid yellow;
+
+  background: #222 url("data:image/svg+xml;utf8,<svg fill='yellow' height='40' viewBox='0 0 24 24' width='40' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 15px center;
+  color: white;
+
+  box-sizing: border-box;
+}
+
+.letter-request .form-group select:focus {
+  background: #222 url("data:image/svg+xml;utf8,<svg fill='yellow' height='40' viewBox='0 0 24 24' width='40' xmlns='http://www.w3.org/2000/svg'><path d='M10 7l5 5-5 5z'/></svg>") no-repeat right 15px center;
+}
+
+/* LETTER */
+.letter-request .letter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.letter-request .letter-section label {
+  display: block;
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 1px;
+  color: yellow;
+}
+
+.letter-request .letter-section input {
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  margin: 0;
+  border-radius: 8px;
+  border: 2px solid yellow;
+  background: #222;
+  color: white;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.letter-request .letter-section select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  padding-right: 40px; /* ini biar ga nempel */
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 2px solid yellow;
+  background: #222 url("data:image/svg+xml;utf8,<svg fill='yellow' height='40' viewBox='0 0 24 24' width='40' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 15px center;
+  color: white;
+  box-sizing: border-box;
+}
+
+.letter-request .letter-section select:focus {
+  background: #222 url("data:image/svg+xml;utf8,<svg fill='yellow' height='40' viewBox='0 0 24 24' width='40' xmlns='http://www.w3.org/2000/svg'><path d='M10 7l5 5-5 5z'/></svg>") no-repeat right 15px center;
+}
+
+/* BUTTON */
+.letter-request .save-btn {
+  background: blue;
+  font-size: 20px;
+  color: yellow;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
+.letter-request .save-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.letter-request .save-btn:hover {
+  opacity: 0.8;
+}
+
+.letter-request .resizer {
+  width: 5px;
+  cursor: col-resize;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+.letter-request .resizer:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.letter-request .divider {
+  border: none;
+  border-top: 2px solid yellowgreen; /* warna garis */
+  height: 1px;
+  background: linear-gradient(to right, transparent, #666, transparent);
+  margin: 15px 0 25px;
+}
+
+.letter-request .custom-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.letter-request .dropdown-header {
+  height: 45px;
+  padding: 10px;
+  padding-right: 40px;
+  border: 2px solid yellow;
+  border-radius: 8px;
+  background: #222 url("data:image/svg+xml;utf8,<svg fill='yellow' height='40' viewBox='0 0 24 24' width='40' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 15px center;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.letter-request .dropdown-header.open {
+  background: #222 url("data:image/svg+xml;utf8,<svg fill='yellow' height='40' viewBox='0 0 24 24' width='40' xmlns='http://www.w3.org/2000/svg'><path d='M10 7l5 5-5 5z'/></svg>") no-repeat right 15px center;
+}
+
+.letter-request .arrow {
+  color: yellow;
+  font-size: 18px;
+  position: absolute;
+  right: 15px;
+}
+
+/* dropdown box */
+.letter-request .dropdown-list {
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(180deg, #1a2cff, #0000aa);
+  border-radius: 10px;
+  margin-top: 5px;
+  overflow: hidden;
+  z-index: 999;
+  animation: fadeIn 0.2s ease;
+}
+
+/* item */
+.letter-request .dropdown-item {
+  padding: 12px;
+  color: yellow;
+  cursor: pointer;
+}
+
+/* hover (ini yang figma banget) */
+.letter-request .dropdown-item:hover {
+  background: yellow;
+  color: black;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* POPUP */
+.letter-request .popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.letter-request .popup-box {
+  width: 400px;
+  background: #5661a8;
+  border-radius: 20px;
+  padding: 30px;
+  color: white;
+}
+
+.letter-request .popup-box label {
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  font-size: 18px;
+  color: white;
+}
+
+.letter-request .popup-box input {
+  width: 100%;
+  height: 45px;
+  box-sizing: border-box;
+  margin-top: 0;
+  margin-bottom: 5px;
+  border: 2px solid yellow;
+  border-radius: 8px;
+  background: #444;
+  color: white;
+  padding: 10px;
+}
+
+.letter-request .popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.letter-request .popup-header h2 {
+  margin: 0;
+  color: white;
+}
+
+.letter-request .popup-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 50px;
+}
+
+.letter-request .popup-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.letter-request .cancel-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.letter-request .confirm-btn {
+  background: green;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.letter-request .student-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.letter-request .add-student-btn {
+  background: blue;
+  color: yellow;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 25px;
+  cursor: pointer;
+}
+
+.letter-request .remove-student-btn {
+  background: red;
+  color: yellow;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 25px;
+  cursor: pointer;
+}
+
+.letter-request .remove-student-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* DIVIDER */
+.letter-request .divider {
+  border: none;
+  border-top: 2px solid yellowgreen;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #666, transparent);
+  margin: 15px 0 25px;
+}
+
+.letter-request .divider.popup {
+  margin-top: 20px;
+  border-top: 2px solid #cce5ff;
+}
+
+/* SUCCESS POPUP */
+.letter-request .success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.letter-request .success-popup {
+  width: 500px;
+  background: #dfe6dc;
+  border: 2px solid #7eb05e;
+  border-radius: 20px;
+  padding: 25px;
+  color: #7eb05e;
+}
+
+.letter-request .success-popup h2 {
+  margin: 0;
+  font-size: 40px;
+  color: #7eb05e;
+}
+
+.letter-request .success-divider {
+  border: none;
+  border-top: 2px solid #7eb05e;
+  margin: 15px 0 25px;
+}
+
+.letter-request .success-popup p {
+  font-size: 18px;
+  color: #7eb05e;
+}
+
+.letter-request .success-icon {
+  width: 180px;
+  height: 180px;
+  margin: 30px auto;
+  border-radius: 50%;
+  background: #7eb05e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 90px;
+  color: white;
+}
+
+.letter-request .success-btn {
+  display: block;
+  margin: 0 auto;
+  background: #7eb05e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 35px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* VALIDATION ERROR */
+.letter-request .error-input {
+  border: 2px solid red !important;
+  color: red !important;
+}
+
+.letter-request .error-message {
+  color: red;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
