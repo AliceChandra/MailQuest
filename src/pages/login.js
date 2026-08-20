@@ -11,7 +11,8 @@ function Login() {
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
-  const [loginError, setLoginError] = useState("");
+  const [loginMessage, setLoginMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
 
   const [rememberMe, setRememberMe] = useState(false);
 
@@ -55,7 +56,8 @@ function Login() {
                     username: false
                   }));
 
-                  setLoginError("");
+                  setLoginMessage("");
+                  setMessageType("");
                 }}
                 className={errors.username ? "error-input" : ""}
               />
@@ -81,7 +83,8 @@ function Login() {
                     password: false
                   }));
 
-                  setLoginError("");
+                  setLoginMessage("");
+                  setMessageType("");
                 }}
                 className={errors.password ? "error-input" : ""}
               />
@@ -99,9 +102,9 @@ function Login() {
               )}
             </div>
 
-            {loginError && (
-              <p className="login-error">
-                {loginError}
+            {loginMessage && (
+              <p className={`login-message ${messageType}`}>
+                {loginMessage}
               </p>
             )}
 
@@ -119,16 +122,15 @@ function Login() {
             <button
               className="login-btn"
               onClick={async() => {
-                if(!validateLogin()) return;
 
-                const userFound = false;
+                if(!validateLogin()) return;
 
                 try {
                   const response = await axios.post(
-                    "http://127.0.0.1:8000/auth/login/",
+                    "http://localhost:8000/auth/login",
                     {
-                      username,
-                      password,
+                      username: username.trim(),
+                      password: password,
                       remember_me: rememberMe
                     },
                     {
@@ -136,11 +138,60 @@ function Login() {
                     }
                   );
 
-                  navigate('/letter-request');
+                  console.log("LOGIN SUCCESS: ", response.data);
+
+                  if(response.data.success) {
+                    if(rememberMe) {
+                      setLoginMessage(
+                        "Login successful! Your session will be remembered."
+                      );
+                    } else {
+                      setLoginMessage(
+                        "Login successful!"
+                      );
+                    }
+
+                    setMessageType("success");
+
+                    navigate("/letter-request");
+                    return;
+                  }
                 }
 
                 catch(error) {
-                  setLoginError("Invalid credentials")
+                  console.error("LOGIN ERROR: ", error);
+
+                  if(error.response) {
+                    
+                    console.log("STATUS:", error.response.status);
+                    console.log("BACKEND RESPONSE:", error.response.data);
+
+                    const status = error.response.status;
+                    const detail = error.response.data?.detail;
+
+                    if(status === 401) {
+                      setLoginMessage(detail || "Invalid credentials.");
+                    } else if(status === 404) {
+                      setLoginMessage(detail || "User not found.");
+                    } else if(status === 422) {
+                      setLoginMessage(detail || "Invalid input. Please check your data.");
+                    } else if(status === 500) {
+                      setLoginMessage("Server error. Please try again later.");
+                    } else {
+                      setLoginMessage(detail || "Login failed.");
+                    }
+
+                    setMessageType("error");
+
+                  } else if (error.request) {
+                    setLoginMessage("Cannot connect to the server.");
+                    setMessageType("error");
+
+                  } else {
+                    setLoginMessage("An unexpected error occured.");
+                    setMessageType("error");
+
+                  }
                 }
               }}
             >

@@ -4,7 +4,28 @@ import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 function LetterRequest() {
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchUser = async() => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/auth/me",
+          {
+            withCredentials: true
+          }
+        );
+
+        console.log("AUTH ME RESPONSE:", response.data);
+
+        setUser(response.data);
+      } catch(error) {
+        console.error("Failed to fetch user: ", error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
   const getInitials = (name) => {
     if (!name) return "G";
 

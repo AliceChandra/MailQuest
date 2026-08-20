@@ -90,11 +90,22 @@ def login_user(user: LoginSchema, response: Response):
         # Verifikasi password
         if not verify_password(user.password, db_user.hashed_password):
             raise ValueError("Invalid username or password")
-        
+
+        # Simpan user yang sedang login
+        response.set_cookie(
+            key="user_id",
+            value=str(db_user.id),
+            httponly=True,
+            samesite="lax",
+            secure=False
+        )
+
         # Remember Me
         if user.remember_me:
             remember_token = secrets.token_urlsafe(32)
+
             expires_at = datetime.now(UTC) + timedelta(days=30)
+
             token = RememberToken(
                 user_id=db_user.id,
                 token=remember_token,
@@ -108,14 +119,16 @@ def login_user(user: LoginSchema, response: Response):
                 key="remember_token",
                 value=remember_token,
                 httponly=True,
-                max_age=60 * 60 * 24 * 30,  # 30 days
+                max_age=60*60*24*30,
                 samesite="lax"
             )
         
         return {
             "id": db_user.id,
+            "name": db_user.name,
             "username": db_user.username,
-            "email": db_user.email
+            "email": db_user.email,
+            "role": db_user.role
         }
     
     finally:

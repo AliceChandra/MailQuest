@@ -141,12 +141,20 @@
   text-align: left;
 }
 
-.login .login-error {
-  color: red;
-  background-color: #F8CECC;
+.login .login-message {
   font-size: 15px;
   margin-top: 10px;
   margin-bottom: 20px;
   text-align: left;
   font-weight: bold;
+}
+
+.login .login-message.error {
+  color: red;
+  background-color: #F8CECC;
+}
+
+.login .login-message.success {
+  color: green;
+  background-color: #D5E8D4;
 }

@@ -16,6 +16,7 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [errors, setErrors] = useState({});
+  const [existErrors, setExistErrors] = useState({});
   const [registerError, setRegisterError] = useState("");
 
   const validateRegister = () => {
@@ -70,15 +71,30 @@ function Register() {
                     name: false
                   }));
 
+                  setExistErrors(prev=>({
+                    ...prev,
+                    name: false
+                  }));
+
                   setRegisterError("");
                 }}
 
-                className={errors.name ? "error-input" : ""}
+                className={
+                  errors.name || existErrors.name
+                  ? "error-input"
+                  : ""
+                }
               />
 
               {errors.name && (
                 <p className="error-message">
                   (this field is required)
+                </p>
+              )}
+
+              {existErrors.name && (
+                <p className="error-message">
+                  (a field with this name is already existed)
                 </p>
               )}
             </div>
@@ -96,15 +112,30 @@ function Register() {
                     username: false
                   }));
 
+                  setExistErrors(prev=>({
+                    ...prev,
+                    username: false
+                  }));
+
                   setRegisterError("");
                 }}
 
-                className={errors.username ? "error-input" : ""}
+                className={
+                  errors.username || existErrors.username
+                  ? "error-input"
+                  : ""
+                }
               />
 
               {errors.username && (
                 <p className="error-message">
                   (this field is required)
+                </p>
+              )}
+
+              {existErrors.username && (
+                <p className="error-message">
+                  (a field with this name is already existed)
                 </p>
               )}
             </div>
@@ -122,15 +153,30 @@ function Register() {
                     email: false
                   }));
 
+                  setExistErrors(prev=>({
+                    ...prev,
+                    email: false
+                  }));
+
                   setRegisterError("");
                 }}
 
-                className={errors.email ? "error-input" : ""}
+                className={
+                  errors.email || existErrors.email
+                  ? "error-input"
+                  : ""
+                }
               />
 
               {errors.email && (
                 <p className="error-message">
                   (this field is required)
+                </p>
+              )}
+
+              {existErrors.email && (
+                <p className="error-message">
+                  (a field with this name is already existed)
                 </p>
               )}
             </div>
@@ -149,10 +195,19 @@ function Register() {
                     password: false
                   }));
 
+                  setExistErrors(prev=>({
+                    ...prev,
+                    password: false
+                  }));
+
                   setRegisterError("");
                 }}
 
-                className={errors.password ? "error-input" : ""}
+                className={
+                  errors.password || existErrors.password
+                  ? "error-input"
+                  : ""
+                }
               />
               <span
                 className="eye-icon"
@@ -164,6 +219,12 @@ function Register() {
               {errors.password && (
                 <p className="error-message">
                   (this field is required)
+                </p>
+              )}
+
+              {existErrors.password && (
+                <p className="error-message">
+                  (a field with this name is already existed)
                 </p>
               )}
             </div>
@@ -182,10 +243,19 @@ function Register() {
                     confirmPassword: false
                   }));
 
+                  setExistErrors(prev=>({
+                    ...prev,
+                    confirmPassword: false
+                  }));
+
                   setRegisterError("");
                 }}
 
-                className={errors.confirmPassword ? "error-input" : ""}
+                className={
+                  errors.confirmPassword || existErrors.confirmPassword
+                  ? "error-input"
+                  : ""
+                }
               />
               <span
                 className="eye-icon"
@@ -197,6 +267,12 @@ function Register() {
               {errors.confirmPassword && (
                 <p className="error-message">
                   (this field is required)
+                </p>
+              )}
+
+              {existErrors.confirmPassword && (
+                <p className="error-message">
+                  (a field with this name is already existed)
                 </p>
               )}
             </div>
@@ -225,28 +301,79 @@ function Register() {
                   return;
                 }
 
-                const usernameExists = false;
-                const emailExists = false;
+                try {
+                  const response = await axios.post(
+                    "http://127.0.0.1:8000/auth/register",
+                    {
+                      name: name,
+                      username: username,
+                      email: email,
+                      password: password,
+                      confirmPassword: confirmPassword
+                    }
+                  );
 
-                if(usernameExists) {
-                  setRegisterError("Username already exists");
-                  return;
-                }
+                  console.log("Registration success: ", response.data);
 
-                if(emailExists) {
-                  setRegisterError("Email already exists");
-                  return;
-                }
+                  setName("");
+                  setUsername("");
+                  setEmail("");
+                  setPassword("");
+                  setConfirmPassword("");
 
-                await axios.post(
-                  "http://127.0.0.1:8000/auth/register",
-                  {
-                    name: name,
-                    username: username,
-                    email: email,
-                    password: password
+                  setErrors({});
+                  setExistErrors({});
+                  setRegisterError("");
+
+                  alert("Registration successful!");
+                } catch(error) {
+                  console.error("Registration error: ", error);
+
+                  setExistErrors({});
+                  setRegisterError("");
+
+                  if(error.response) {
+                    const detail = error.response.data?.detail;
+
+                    if(
+                      typeof detail === "string" &&
+                      detail.toLowerCase().includes("username")
+                    ) {
+                      setExistErrors({
+                        name: true,
+                        username: true,
+                        email: true,
+                        password: true,
+                        confirmPassword: true
+                      });
+                      return;
+                    }
+
+                    if (
+                      typeof detail === "string" &&
+                      detail.toLowerCase().includes("email")
+                    ) {
+                      setExistErrors({
+                        email: true
+                      });
+                      return;
+                    }
+
+                    else if (
+                      typeof detail === "string" &&
+                      detail.toLowerCase().includes("name")
+                    ) {
+                      setExistErrors({
+                        name: true
+                      });
+                      return;
+                    }
+
+                    setRegisterError(detail || "Registration failed.")
+                  } else {
+                    setRegisterError("Cannot connect to the server.");
                   }
-                );
+                }
               }}
             >
               Register

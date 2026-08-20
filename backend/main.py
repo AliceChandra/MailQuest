@@ -16,14 +16,8 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000/register",
-        "http://localhost:3000/login",
-        "http://localhost:3000/letter-request",
-        "http://localhost:3000/view-status",
-        "http://localhost:3000/dashboard",
-        "http://localhost:3000/create-letter",
-        "http://localhost:3000/manage-head",
-        "http://localhost:3000/manage-template"
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
     ],
     allow_credentials=True,
     allow_methods=["*"],
